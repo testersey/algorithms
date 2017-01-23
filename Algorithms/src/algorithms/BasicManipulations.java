@@ -9,7 +9,7 @@ package algorithms;
  *
  * @author javaday
  */
-public class Arrays {
+public class BasicManipulations {
 
     private int[] theArray = new int[50];
 
@@ -133,42 +133,83 @@ public class Arrays {
         theArray[indexOne] = theArray[indexTwo];
         theArray[indexTwo] = temp;
     }
-    
-    public void binarySearchForValue(int value){
+
+    public void binarySearchForValue(int value) {
         int lowIndex = 0;
         int highIndex = arraySize - 1;
-        
-        int middleIndex = (lowIndex + highIndex)/2;
-        
-        while (lowIndex )
-    
-    }
 
-    public static void main(String[] args) {
-        Arrays newArray = new Arrays();
+        while (lowIndex <= highIndex) {
+            int middleIndex = (lowIndex + highIndex) / 2;
 
-        newArray.generateRandomArray();
-
-        newArray.printArray();
-
-        System.out.println(newArray.getValueAtIndex(3));
-
-        System.out.println(newArray.doesArrayContainsThisValue(19));
-
-        newArray.deleteIndex(4);
-
-        newArray.printArray();
-
-        newArray.insertValue(13);
-
-        newArray.printArray();
-
-        newArray.linearSearchForValue(17);
-
-        newArray.printHorzArray();
-
-        newArray.bubbleSort();
+            if (theArray[middleIndex] > value) {
+                highIndex = middleIndex - 1;
+            } else if (theArray[middleIndex] < value) {
+                lowIndex = middleIndex + 1;
+            } else {
+                System.out.println("\nFound a match For: " + value + " at Index " + middleIndex);
+                lowIndex = highIndex + 1;
+            }
+        }
 
     }
+
+    public void selectionSort() {
+        for (int x = 0; x < arraySize; x++) {
+            int minimum = x;
+
+            for (int y = x; y < arraySize; y++) {
+                if (theArray[minimum] > theArray[y]) {
+                    minimum = y;
+                }
+
+            }
+            swapValues(x, minimum);
+        }
+
+    }
+
+    public void insertionSort() {
+        for (int i = 1; i < arraySize; i++) {
+            int j = i;
+
+            int toInsert = theArray[i];
+
+            while ((j > 0) && (theArray[j - 1] > toInsert)) {
+                theArray[j] = theArray[j - 1];
+                j--;
+            }
+            theArray[j] = toInsert;
+            System.out.println("/nArray[i] = " + theArray[i] + " theArray[j] = " + theArray[j] + " toInsert = " + toInsert);
+        }
+    }
+
+//    public static void main(String[] args) {
+//        BasicManipulations newArray = new BasicManipulations();
+//
+//        newArray.generateRandomArray();
+//
+//        newArray.printArray();
+
+//        System.out.println(newArray.getValueAtIndex(3));
+//
+//        System.out.println(newArray.doesArrayContainsThisValue(19));
+//
+//        newArray.deleteIndex(4);
+//
+//        newArray.printArray();
+//
+//        newArray.insertValue(13);
+//
+//        newArray.printArray();
+//
+//        newArray.linearSearchForValue(17);
+//
+//        newArray.printHorzArray();
+//
+//        newArray.bubbleSort();
+//
+//        newArray.binarySearchForValue(13);
+//        newArray.selectionSort();
+
 
 }
