@@ -57,42 +57,91 @@ public class Arrays {
             arraySize--;
         }
     }
-    
-    public void insertValue(int value){
-         if (arraySize < 50) {
-             
-             theArray[arraySize] = value;
-             
-             arraySize++;
-         }
+
+    public void insertValue(int value) {
+        if (arraySize < 50) {
+
+            theArray[arraySize] = value;
+
+            arraySize++;
+        }
     }
-    
-    public String linearSearchForValue( int value){
+
+    public String linearSearchForValue(int value) {
         boolean valueInArray = false;
-        
+
         String indexsWithValue = "";
-        
+
         System.out.println("The Value was found in the following: ");
-        
-        for (int i = 0; i < arraySize; i++){
-        
-            if (theArray[i] == value){
-            
-            valueInArray = true;
-            
+
+        for (int i = 0; i < arraySize; i++) {
+
+            if (theArray[i] == value) {
+
+                valueInArray = true;
+
                 System.out.println(i + " ");
-                
-                indexsWithValue+= i + " ";
+
+                indexsWithValue += i + " ";
             }
         }
-        if (!valueInArray){
-        indexsWithValue = "None";
-        
+        if (!valueInArray) {
+            indexsWithValue = "None";
+
             System.out.println(indexsWithValue);
         }
         System.out.println();
-        
+
         return indexsWithValue;
+    }
+
+    public void printLineDecorator() {
+        System.out.println("");
+        for (int k = 0; k < arraySize * 5; k++) {
+            System.out.print("-");
+        }
+        System.out.println("");
+    }
+
+    public void printHorzArray() {
+        printLineDecorator();
+        for (int i = 0; i < arraySize; i++) {
+            System.out.print(i + "  | ");
+        }
+
+        printLineDecorator();
+        for (int j = 0; j < arraySize; j++) {
+            System.out.print(theArray[j] + " | ");
+        }
+        printLineDecorator();
+    }
+
+    public void bubbleSort() {
+        for (int i = arraySize - 1; i > 1; i--) {
+            for (int j = 0; j < i; j++) {
+                if (theArray[j] > theArray[j + 1]) {
+                    swapValues(j, j + 1);
+                    printHorzArray();
+                }
+            }
+        }
+        printHorzArray();
+    }
+
+    public void swapValues(int indexOne, int indexTwo) {
+        int temp = theArray[indexOne];
+        theArray[indexOne] = theArray[indexTwo];
+        theArray[indexTwo] = temp;
+    }
+    
+    public void binarySearchForValue(int value){
+        int lowIndex = 0;
+        int highIndex = arraySize - 1;
+        
+        int middleIndex = (lowIndex + highIndex)/2;
+        
+        while (lowIndex )
+    
     }
 
     public static void main(String[] args) {
@@ -105,18 +154,21 @@ public class Arrays {
         System.out.println(newArray.getValueAtIndex(3));
 
         System.out.println(newArray.doesArrayContainsThisValue(19));
-        
+
         newArray.deleteIndex(4);
-        
+
         newArray.printArray();
-        
-        newArray.insertValue(55);
-        
+
+        newArray.insertValue(13);
+
         newArray.printArray();
-        
+
         newArray.linearSearchForValue(17);
-        
-        
+
+        newArray.printHorzArray();
+
+        newArray.bubbleSort();
+
     }
 
 }
